@@ -1,0 +1,9 @@
+{
+  "firebase": "mytaskapp",
+  "public": ".",
+  "ignore": [
+    "firebase.json",
+    "**/.*",
+    "**/node_modules/**"
+  ]
+}
