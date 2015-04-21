@@ -1,7 +1,7 @@
 'use strict';
 
 var app = angular
-  .module('TaskNinjaApp', ['chieffancypants.loadingBar','ngAnimate','ngResource','ngRoute','firebase','toaster', 'angularMoment'])
+  .module('Ajo', ['chieffancypants.loadingBar','ngAnimate','ngResource','ngRoute','firebase','toaster', 'angularMoment'])
   .constant('FURL', 'https://ajo.firebaseio.com/')
   .run(['$rootScope', '$location', function ($rootScope, $location) {
     $rootScope.$on("$routeChangeError", function(event, next, previous, error) {
@@ -36,6 +36,12 @@ var app = angular
             return Authentication.requireAuth();
           }
         }
+      })
+      .when('/admin', {
+        templateUrl: 'views/admin.html'
+      })
+      .when('/user', {
+        templateUrl: 'views/user.html'
       })
       .otherwise({
         redirectTo: '/'

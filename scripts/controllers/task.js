@@ -9,7 +9,6 @@ app.controller('TaskController', ['$scope', '$location', 'toaster', 'Task', 'Aut
     $scope.task.name = Authentication.user.profile.name;
     $scope.task.poster = Authentication.user.uid;
 
-
     Task.createTask($scope.task).then(function(ref) {
       $('#posModal').modal('hide');
       toaster.pop('success', 'Task Created Succesfully.');
