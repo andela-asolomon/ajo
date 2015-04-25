@@ -38,7 +38,8 @@ var app = angular
         }
       })
       .when('/admin', {
-        templateUrl: 'views/admin.html'
+        templateUrl: 'views/admin.html',
+        controller: 'AdminController'
       })
       .when('/user', {
         templateUrl: 'views/user.html'

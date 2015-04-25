@@ -12,35 +12,22 @@ app.factory('Authentication', ['FURL', '$firebaseAuth', '$firebase',
 
       createProfile: function(uid, user) {
         if (uid.indexOf("google") >= 0) {
-
           var profile = {
             name: user.name,
             accessToken: user.accessToken,
             gravatar: user.gravatar
           };
-
           var adminRef = $firebase(ref.child('admin'));
-
           return adminRef.$set(uid, profile);
-
         } else {
-
           var profile = {
             name: user.name,
             email: user.email,
             gravatar: get_gravatar(user.email, 40)
           };
-
-          var userRef = $firebase(ref.child('user'));
-
+          var userRef = $firebase(ref.child('user').child(user.group));
           return userRef.$set(uid, profile);
-
         }
-
-      },
-
-      createGroup: function() {
-      	return 
       },
 
       getProfile: function(uid) {
@@ -89,14 +76,12 @@ app.factory('Authentication', ['FURL', '$firebaseAuth', '$firebase',
           if (error) {
             console.log("Login Failed!", error);
           } else {
-
             var user = {
               name: authData.google.cachedUserProfile.name,
               accessToken: authData.google.accessToken,
               gravatar: authData.google.cachedUserProfile.picture,
               email: authData.google.email
             }
-
             Auth.createProfile(authData.uid, user);
           }
         });
@@ -109,19 +94,17 @@ app.factory('Authentication', ['FURL', '$firebaseAuth', '$firebase',
         if (authData.uid.indexOf("google") >= 0) {
         	Auth.user.profile = $firebase(ref.child('admin').child(authData.uid)).$asObject();
         } else {
-        	Auth.user.profile = $firebase(ref.child('user').child(authData.uid)).$asObject();
+        	Auth.user.profile = $firebase(ref.child('user').child('-Jni9LTk-Qr5Sxsv_wRl').child(authData.uid)).$asObject();
         }
       } else {
         if (Auth.user && Auth.user.profile) {
           Auth.user.profile.$destroy();
         };
-
         angular.copy({}, Auth.user)
       }
     });
 
     function get_gravatar(email, size) {
-
       email = email.toLowerCase();
 
       var MD5 = function(s) {

@@ -1,4 +1,4 @@
-<div class="modal fade" id="userGroup" ng-controller="UserController">
+<div class="modal fade" id="userGroup" ng-controller="AdminController">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			
@@ -9,8 +9,8 @@
 			  </div>
 
 			  <div class="panel-body">
-				<form ng-submit="createUser()">
-					<input type="text" ng-model="group.name" class="form-control" placeholder="User's name" required><br>
+				<form ng-submit="createGroup()">
+					<input type="text" ng-model="group.name" class="form-control" placeholder="Name of Group" required><br>
 					<input type="number" ng-model="group.amount" class="form-control" placeholder="Amount to be contributed" required>
 					<input type="text" ng-model="group.days" class="form-control" placeholder="Number of days for the Group" required>
 					<input type="submit" value="Create Group" class="btn btn-info">
