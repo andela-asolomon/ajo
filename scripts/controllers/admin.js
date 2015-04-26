@@ -4,11 +4,10 @@ app.controller('AdminController', ['$scope', '$location', 'toaster', 'Authentica
   function($scope, $location, toaster, Authentication, Admin) {
 
     $scope.admin = Authentication.user;
-    console.log("scope.admin: ", $scope.admin.uid);
-
+  
     $scope.createGroup = function() {
       $scope.group.createdBy = $scope.currentUser.uid;
-      Admin.createGroup($scope.group).then(function(){
+      Admin.createGroup($scope.group).then(function() {
         $('#userGroup').modal('hide');
         toaster.pop('success', 'Group Successfully Created');
         $location.path('/admin');
@@ -30,13 +29,15 @@ app.controller('AdminController', ['$scope', '$location', 'toaster', 'Authentica
       });
     };
 
-    // $scope.getGroup = function() {
-    //   Admin.getGroup($scope.admin.uid).then(function(data) {
-    //     console.log("data: ", data);
-    //   }, function(err) {
-    //     console.log("err: ", err);
-    //   });
-    // };
+    $scope.getGroup = function() {
+      Admin.getGroup($scope.admin.uid, function(data) {
+        console.log("data: ", data);
+        $scope.group = data;
+        $scope.$apply();
+      }, function(err) {
+        console.log("err: ", err);
+      });
+    };
 
     // $scope.editTask = function(task) {
     //   Task.editTask(task).then(function() {
