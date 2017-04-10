@@ -1,12 +1,12 @@
-var jwt = require('express-jwt');
-var secret = require('../config').secret;
+var jwt = require('express-jwt')
+var secret = require('../config').secret
 
-function getTokenFromHeader(req){
+function getTokenFromHeader (req) {
   if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Token') {
-    return req.headers.authorization.split(' ')[1];
+    return req.headers.authorization.split(' ')[1]
   }
 
-  return null;
+  return null
 }
 
 var auth = {
@@ -21,6 +21,6 @@ var auth = {
     credentialsRequired: false,
     getToken: getTokenFromHeader
   })
-};
+}
 
-module.exports = auth;
+module.exports = auth

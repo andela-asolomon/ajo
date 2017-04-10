@@ -1,12 +1,8 @@
-// var fs = require('fs')
-// var http = require('http')
 var path = require('path')
-var methods = require('methods')
 var express = require('express')
 var bodyParser = require('body-parser')
 var session = require('express-session')
 var cors = require('cors')
-var passport = require('passport')
 var errorhandler = require('errorhandler')
 var mongoose = require('mongoose')
 
@@ -31,17 +27,17 @@ if (!isProduction) {
   app.use(errorhandler())
 }
 
-if(isProduction) {
-  mongoose.connect(process.env.MONGODB_URI);
+if (isProduction) {
+  mongoose.connect(process.env.MONGODB_URI)
 } else {
   mongoose.connect('mongodb://localhost/ajo-db')
   mongoose.set('debug', true)
 }
 
-require('./models/User');
-require('./models/Group');
+require('./models/User')
+require('./models/Group')
 // require('./models/Comment');
-require('./config/passport');
+require('./config/passport')
 
 app.use(require('./routes'))
 
