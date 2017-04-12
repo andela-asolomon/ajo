@@ -11,7 +11,7 @@ var UserSchema = new mongoose.Schema({
   lastName: {type: String, required: [true, 'This field is required']},
   mobileNumber: {type: String, lowercase: true, unique: true, required: [true, 'This field is required'], index: true},
   email: {type: String, lowercase: true, unique: true, required: [true, 'This field is required'], match: [/\S+@\S+\.\S+/, 'is invalid'], index: true},
-  dateOfBirth: {type: String, required: [true, 'This field is required']},
+  dateOfBirth: {type: Date, required: [true, 'This field is required']},
   address: {type: String, required: [true, 'This field is required']},
   groups: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Group' }],
   hash: String,
